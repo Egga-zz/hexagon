@@ -1,6 +1,5 @@
 package de.egga;
 
-import org.json.JSONException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,12 +30,10 @@ public class TestBase {
 
     protected String fixture(String fileName) {
 
-        ClassLoader classLoader = getClass().getClassLoader();
-        Path path = Paths.get(classLoader.getResource(fileName + ".json").getPath());
+        Path path = findFile(fileName);
 
         try {
-            String jsonString = new String(readAllBytes(path));
-            return jsonString;
+            return new String(readAllBytes(path));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -47,22 +44,10 @@ public class TestBase {
         return new JsonAssertion(actual);
     }
 
-    public class JsonAssertion {
 
-        private final String actual;
-
-        private JsonAssertion(String actual) {
-            this.actual = actual;
-        }
-
-        public void isEqualTo(String expected) {
-
-            try {
-                assertEquals(actual, expected, false);
-
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
-        }
+    private Path findFile(String fileName) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        return Paths.get(classLoader.getResource(fileName + ".json").getPath());
     }
+
 }
