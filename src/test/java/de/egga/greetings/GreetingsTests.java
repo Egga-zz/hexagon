@@ -1,30 +1,22 @@
 package de.egga.greetings;
 
+import de.egga.TestBase;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT)
-public class GreetingsTests {
-
-    @Autowired
-    private TestRestTemplate restTemplate;
+public class GreetingsTests extends TestBase {
 
     @Test
-    public void contextLoads() {
-        ResponseEntity<String> entity = get("/greetings", String.class);
-        assertThat(entity.getBody()).isEqualTo("Hola!");
+    public void get_returns_proper_greetings() {
+
+        String expected = fixture("greetings");
+
+        String actual = get("/greetings");
+
+        assertThat(actual).isEqualTo(expected);
+
     }
 
-    private <T> ResponseEntity<T> get(String url, Class<T> responseType) {
-        return restTemplate.getForEntity(url, responseType);
-    }
 }

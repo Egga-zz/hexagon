@@ -11,7 +11,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 class GreetingsController {
 
-    private final GreetingService service;
+    final GreetingService service;
 
     @Autowired
     GreetingsController(GreetingService service) {
@@ -20,8 +20,8 @@ class GreetingsController {
 
 
     @RequestMapping(method = GET, value = "/greetings")
-    ResponseEntity<String> get() {
-        String greeting = service.getGreeting();
+    ResponseEntity<Greetings> get() {
+        Greetings greeting = service.getGreetings();
         return new ResponseEntity<>(greeting, OK);
     }
 
