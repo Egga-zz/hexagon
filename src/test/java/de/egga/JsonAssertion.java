@@ -19,7 +19,7 @@ public class JsonAssertion {
     public void isEqualTo(String expected) {
 
         try {
-            assertEquals(actual, expected, STRICT_MODE);
+            assertEquals(expected, actual, STRICT_MODE);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
