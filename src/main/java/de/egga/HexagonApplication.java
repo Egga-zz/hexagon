@@ -1,12 +1,15 @@
 package de.egga;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import static org.springframework.boot.SpringApplication.run;
 
 @SpringBootApplication
 public class HexagonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HexagonApplication.class, args);
+		run(HexagonApplication.class, args);
 	}
+
 }
+
