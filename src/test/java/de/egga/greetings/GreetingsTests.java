@@ -1,4 +1,4 @@
-package de.egga;
+package de.egga.greetings;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,18 +13,18 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-public class HexagonApplicationTests {
+public class GreetingsTests {
 
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
     public void contextLoads() {
-        ResponseEntity<String> entity =
-            this.restTemplate.getForEntity("/greetings", String.class);
-        String body = entity.getBody();
-        assertThat(body).isEqualTo("Hola!");
-
+        ResponseEntity<String> entity = get("/greetings", String.class);
+        assertThat(entity.getBody()).isEqualTo("Hola!");
     }
 
+    private <T> ResponseEntity<T> get(String url, Class<T> responseType) {
+        return restTemplate.getForEntity(url, responseType);
+    }
 }

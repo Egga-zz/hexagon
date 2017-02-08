@@ -1,4 +1,4 @@
-package de.egga;
+package de.egga.greetings;
 
 import org.springframework.stereotype.Service;
 
