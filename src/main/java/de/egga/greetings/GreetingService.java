@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 class GreetingService {
 
     Greetings getGreetings() {
-        return new Greetings("Hola!");
+        return new Greetings("Hola!", "Noon");
     }
 
 }

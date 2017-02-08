@@ -6,5 +6,6 @@ import lombok.Data;
 class Greetings {
 
     private final String value;
+    private final String timeOfDay;
 
 }
