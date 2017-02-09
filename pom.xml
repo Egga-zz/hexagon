@@ -47,6 +47,12 @@
 			<artifactId>guava</artifactId>
 			<version>20.0</version>
 		</dependency>
+        <dependency>
+            <groupId>net.javacrumbs.json-unit</groupId>
+            <artifactId>json-unit-fluent</artifactId>
+            <version>1.18.0</version>
+            <scope>test</scope>
+        </dependency>
 
 
 

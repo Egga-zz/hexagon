@@ -30,12 +30,21 @@ public class TestBase {
         return entity.getBody();
     }
 
+    protected String get(String url) {
+        ResponseEntity<String> entity = restTemplate.getForEntity(url, String.class);
+        return entity.getBody();
+    }
+
     protected void put(String requestBody, String url, String key, String value) {
         restTemplate.put(
             url,
             createHttpEntity(requestBody),
             newHashMap(key, value)
         );
+    }
+
+    protected void delete(String url) {
+        restTemplate.delete(url);
     }
 
     protected String fixture(String fileName) {
@@ -48,10 +57,6 @@ public class TestBase {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    protected JsonAssertion assertThat(String actual) {
-        return new JsonAssertion(actual);
     }
 
 

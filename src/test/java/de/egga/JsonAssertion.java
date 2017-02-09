@@ -25,4 +25,8 @@ public class JsonAssertion {
             throw new RuntimeException(e);
         }
     }
+
+    public void contains(String element) {
+
+    }
 }
