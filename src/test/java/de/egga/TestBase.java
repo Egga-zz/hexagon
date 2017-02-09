@@ -38,13 +38,6 @@ public class TestBase {
         );
     }
 
-    private HttpEntity<String> createHttpEntity(String requestBody) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(APPLICATION_JSON);
-
-        return new HttpEntity<>(requestBody, headers);
-    }
-
     protected String fixture(String fileName) {
 
         Path path = findFile(fileName);
@@ -65,6 +58,13 @@ public class TestBase {
     private Path findFile(String fileName) {
         ClassLoader classLoader = getClass().getClassLoader();
         return Paths.get(classLoader.getResource(fileName + ".json").getPath());
+    }
+
+    private HttpEntity<String> createHttpEntity(String requestBody) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(APPLICATION_JSON);
+
+        return new HttpEntity<>(requestBody, headers);
     }
 
 }
