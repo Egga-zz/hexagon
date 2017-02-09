@@ -6,7 +6,7 @@ import org.junit.Test;
 public class GreetingsTest extends TestBase {
 
     @Test
-    public void get_returns_proper_greetings() {
+    public void a_persisted_entity_can_be_retrieved() {
 
         String entity = fixture("greetings");
 
