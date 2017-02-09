@@ -11,7 +11,7 @@ public class GreetingsTest extends TestBase {
     String anyEntity = fixture("greetings");
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         delete("/greetings");
 
     }

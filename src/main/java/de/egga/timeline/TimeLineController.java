@@ -1,6 +1,6 @@
 package de.egga.timeline;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import de.egga.post.PostView;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,18 +14,11 @@ class TimeLineController {
 
     private static final String URL = "/users/{userId}/timeline";
 
-    final TimeLineService service;
-
-    @Autowired
-    TimeLineController(TimeLineService service) {
-        this.service = service;
-    }
-
 
     @RequestMapping(method = GET, value = URL)
     ResponseEntity<TimeLineView> get(@PathVariable String userId) {
-        TimeLineView timeLine = service.getPostsOf(userId);
-        return new ResponseEntity<>(timeLine, OK);
+        TimeLineView dummy = new TimeLineView(new PostView("any-post", "any-message"));
+        return new ResponseEntity<>(dummy, OK);
     }
 
 }

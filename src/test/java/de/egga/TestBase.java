@@ -49,6 +49,9 @@ public class TestBase {
     protected void delete(String url) {
         restTemplate.delete(url);
     }
+    protected void delete(String url, String id) {
+        restTemplate.delete(url, id);
+    }
 
     protected String fixture(String fileName) {
 

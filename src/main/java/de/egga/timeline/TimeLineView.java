@@ -1,4 +1,22 @@
 package de.egga.timeline;
 
-public class TimeLineView {
+import de.egga.post.PostView;
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+class TimeLineView {
+
+    private final List<PostView> posts = new ArrayList<>();
+
+
+    public TimeLineView(PostView... posts) {
+
+        for (PostView post : posts) {
+            this.posts.add(post);
+        }
+
+    }
 }
