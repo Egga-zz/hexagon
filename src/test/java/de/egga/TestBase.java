@@ -1,5 +1,7 @@
 package de.egga;
 
+import com.google.common.collect.ImmutableMap;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,14 +14,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 
 import static java.nio.file.Files.readAllBytes;
-import static org.assertj.core.util.Maps.newHashMap;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
+@Ignore
 public class TestBase {
 
     @Autowired
@@ -35,12 +38,12 @@ public class TestBase {
         return entity.getBody();
     }
 
+    protected void put(String requestBody, String url, String key1, String value1, String key2, String value2) {
+        put(requestBody, url, ImmutableMap.of(key1, value1, key2, value2));
+
+    }
     protected void put(String requestBody, String url, String key, String value) {
-        restTemplate.put(
-            url,
-            createHttpEntity(requestBody),
-            newHashMap(key, value)
-        );
+        put(requestBody, url, ImmutableMap.of(key, value));
     }
 
     protected void delete(String url) {
@@ -59,6 +62,14 @@ public class TestBase {
         }
     }
 
+
+    private void put(String requestBody, String url, Map<String, String> params) {
+        restTemplate.put(
+            url,
+            createHttpEntity(requestBody),
+            params
+        );
+    }
 
     private Path findFile(String fileName) {
         ClassLoader classLoader = getClass().getClassLoader();
