@@ -18,5 +18,10 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>de.egga</groupId>
+            <artifactId>hexagon-posts</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

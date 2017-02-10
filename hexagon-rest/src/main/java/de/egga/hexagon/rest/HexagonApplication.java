@@ -1,6 +1,7 @@
 package de.egga.hexagon.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.egga.hexagon.persistence.SimplePostRepository;
 import de.egga.hexagon.posts.PostService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,7 @@ public class HexagonApplication {
 
 	@Bean
 	public PostService postService() {
-		return new PostService();
+		return new PostService(new SimplePostRepository());
 	}
 }
 
