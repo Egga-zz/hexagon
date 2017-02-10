@@ -1,5 +1,6 @@
 package de.egga.hexagon.rest.post;
 
+import de.egga.hexagon.posts.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,7 @@ class PostController {
 
     @RequestMapping(method = DELETE, value = COLLECTION_URL)
     ResponseEntity delete(@PathVariable String userId) {
-        service.deleteAll();
+        //service.deleteAll();
         return new ResponseEntity<>(NO_CONTENT);
     }
 

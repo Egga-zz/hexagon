@@ -1,11 +1,11 @@
-package de.egga.hexagon.rest.post;
+package de.egga.hexagon.posts;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class PostService {
 
-    void deleteAll() {
+    public void deleteAll() {
 
     }
 

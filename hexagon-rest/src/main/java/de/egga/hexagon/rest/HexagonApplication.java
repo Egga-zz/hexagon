@@ -1,6 +1,7 @@
 package de.egga.hexagon.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.egga.hexagon.posts.PostService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
@@ -19,5 +20,9 @@ public class HexagonApplication {
 		return new ObjectMapper().setPropertyNamingStrategy(SNAKE_CASE);
 	}
 
+	@Bean
+	public PostService postService() {
+		return new PostService();
+	}
 }
 
