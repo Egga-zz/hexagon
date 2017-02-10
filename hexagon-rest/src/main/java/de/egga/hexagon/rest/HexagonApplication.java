@@ -39,9 +39,7 @@ public class HexagonApplication {
     }
 
     @Bean
-    public TimeLineService timeLineService(
-        FriendshipService friendshipService, PostService postService
-    ) {
+    public TimeLineService timeLineService(FriendshipService friendshipService, PostService postService) {
         return new TimeLineService(
             friendshipService, postService
         );

@@ -12,9 +12,7 @@ class TimeLineView {
 
     private final List<PostView> posts = new ArrayList<>();
 
-
     public TimeLineView(List<PostView> posts) {
-
         this.posts.addAll(posts);
     }
 }

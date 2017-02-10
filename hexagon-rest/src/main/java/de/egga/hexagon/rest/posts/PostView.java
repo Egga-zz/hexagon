@@ -6,7 +6,6 @@ public class PostView {
     private String message;
 
     public PostView() {
-
     }
 
     public PostView(String message) {
