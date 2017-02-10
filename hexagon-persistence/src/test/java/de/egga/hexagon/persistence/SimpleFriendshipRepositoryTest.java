@@ -45,7 +45,7 @@ public class SimpleFriendshipRepositoryTest {
     public void user_b_has_a_not_as_friend_anymore() {
         repository.add(userA, userB);
         repository.remove(userA, userB);
-        assertThat(friendsOf(userA)).doesNotContain(userB);
+        assertThat(friendsOf(userB)).doesNotContain(userA);
     }
 
 

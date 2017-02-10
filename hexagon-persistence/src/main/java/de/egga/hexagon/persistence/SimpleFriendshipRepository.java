@@ -27,10 +27,8 @@ public class SimpleFriendshipRepository implements FriendshipRepository {
 
     @Override
     public void remove(User user, User exfriend) {
-        if (isRegistered(user)) {
-            Set<User> friends = friendsOf.get(user);
-            friends.remove(exfriend);
-        }
+        removeFriendship(user, exfriend);
+        removeFriendship(exfriend, user);
     }
 
     @Override
@@ -43,6 +41,13 @@ public class SimpleFriendshipRepository implements FriendshipRepository {
     private void addFriendship(User userA, User userB) {
         ensureFriendsListFor(userA);
         friendsOf.get(userA).add(userB);
+    }
+
+    private void removeFriendship(User user, User exfriend) {
+        if (isRegistered(user)) {
+            Set<User> friends = friendsOf.get(user);
+            friends.remove(exfriend);
+        }
     }
 
     private boolean isRegistered(User user) {
