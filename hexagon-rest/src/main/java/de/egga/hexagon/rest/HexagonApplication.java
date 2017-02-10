@@ -12,18 +12,19 @@ import static org.springframework.boot.SpringApplication.run;
 @SpringBootApplication
 public class HexagonApplication {
 
-	public static void main(String[] args) {
-		run(HexagonApplication.class, args);
-	}
+    public static void main(String[] args) {
+        run(HexagonApplication.class, args);
+    }
 
-	@Bean
-	public ObjectMapper jacksonObjectMapper() {
-		return new ObjectMapper().setPropertyNamingStrategy(SNAKE_CASE);
-	}
+    @Bean
+    public ObjectMapper jacksonObjectMapper() {
+        return new ObjectMapper().setPropertyNamingStrategy(SNAKE_CASE);
+    }
 
-	@Bean
-	public PostService postService() {
-		return new PostService(new SimplePostRepository(), friendshipService);
-	}
+    @Bean
+    public PostService postService() {
+        return new PostService(
+            new SimplePostRepository());
+    }
 }
 
