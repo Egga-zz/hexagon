@@ -32,8 +32,8 @@ public class PostServiceTest {
 
     @Test
     public void delete_all_triggers_repository() {
-        service.deleteAll(randomUser.getId());
-        verify(repository).deleteUsersPosts(randomUser.getId());
+        service.deleteAll();
+        verify(repository).deleteAllPosts();
     }
 
     @Test

@@ -10,11 +10,11 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public void deleteAll(UserId id) {
-        postRepository.deleteUsersPosts(id);
+    public void deleteAll() {
+        postRepository.deleteAllPosts();
     }
 
-    public List<Post>  getAllPosts(UserId id) {
+    public List<Post> getAllPosts(UserId id) {
         return postRepository.getUsersPosts(id);
     }
 

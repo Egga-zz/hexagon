@@ -12,7 +12,7 @@ public class SimplePostRepository implements PostRepository {
     private final List<Post> posts = new ArrayList<>();
 
     @Override
-    public void deleteUsersPosts(UserId id) {
+    public void deleteAllPosts() {
         posts.clear();
     }
 
