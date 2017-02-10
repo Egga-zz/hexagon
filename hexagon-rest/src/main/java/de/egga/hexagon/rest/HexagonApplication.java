@@ -23,7 +23,7 @@ public class HexagonApplication {
 
 	@Bean
 	public PostService postService() {
-		return new PostService(new SimplePostRepository());
+		return new PostService(new SimplePostRepository(), friendshipService);
 	}
 }
 

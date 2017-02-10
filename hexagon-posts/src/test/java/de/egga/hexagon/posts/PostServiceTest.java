@@ -10,7 +10,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static de.egga.hexagon.users.UserFactory.randomId;
 import static de.egga.hexagon.users.UserFactory.randomUser;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +19,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class PostServiceTest {
 
-    private final UserId anyId = randomId();
+    private final User randomUser = randomUser();
 
 
     @Mock
@@ -29,38 +28,25 @@ public class PostServiceTest {
     @InjectMocks
     PostService service;
 
+
     @Test
     public void delete_all_triggers_repository() {
-        service.deleteAll(anyId);
-        verify(repository).deleteUsersPosts(anyId);
+        service.deleteAll(randomUser.getId());
+        verify(repository).deleteUsersPosts(randomUser.getId());
     }
 
     @Test
     public void get_all_returns_users_posts() {
-        Post post = new Post();
-        when(repository.getUsersPosts(anyId)).thenReturn(asList(post));
-        List<Post> allPosts = service.getAllPosts(anyId);
+        Post post = new Post(randomUser);
+        when(repository.getUsersPosts(randomUser.getId())).thenReturn(asList(post));
+        List<Post> allPosts = service.getAllPosts(randomUser.getId());
         assertThat(allPosts).containsExactly(post);
     }
 
     @Test
     public void post_gets_persisted() {
-        Post post = new Post();
+        Post post = new Post(randomUser);
         service.post(post);
         verify(repository).add(post);
     }
-
-    @Test
-    public void user_sees_friends_post() {
-        User userA = randomUser();
-        User userB = randomUser();
-
-
-
-        Post post = new Post();
-        service.post(post);
-
-    }
-
-
 }

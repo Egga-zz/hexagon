@@ -10,7 +10,7 @@ public class User {
         this.id = id;
     }
 
-    UserId getId() {
+    public UserId getId() {
         return id;
     }
 }

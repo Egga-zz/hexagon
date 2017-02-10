@@ -4,22 +4,21 @@ import java.util.List;
 
 public class PostService {
 
-    private final PostRepository repository;
+    private final PostRepository postRepository;
 
-    public PostService(PostRepository repository) {
-        this.repository = repository;
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
     }
 
     public void deleteAll(UserId id) {
-        repository.deleteUsersPosts(id);
+        postRepository.deleteUsersPosts(id);
     }
 
     public List<Post>  getAllPosts(UserId id) {
-        return repository.getUsersPosts(id);
+        return postRepository.getUsersPosts(id);
     }
 
     public void post(Post post) {
-        repository.add(post);
-
+        postRepository.add(post);
     }
 }
