@@ -1,10 +1,7 @@
 package de.egga.hexagon.posts;
 
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@Service
 public class PostService {
 
     private final PostRepository repository;

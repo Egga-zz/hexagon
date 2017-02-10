@@ -1,6 +1,7 @@
 package de.egga.hexagon.posts;
 
 
+import de.egga.hexagon.users.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -9,8 +10,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
+import static de.egga.hexagon.users.UserFactory.randomId;
+import static de.egga.hexagon.users.UserFactory.randomUser;
 import static java.util.Arrays.asList;
-import static java.util.UUID.randomUUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -18,7 +20,8 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class PostServiceTest {
 
-    private final UserId anyId = new UserId(randomUUID().toString());
+    private final UserId anyId = randomId();
+
 
     @Mock
     PostRepository repository;
@@ -46,4 +49,18 @@ public class PostServiceTest {
         service.post(post);
         verify(repository).add(post);
     }
+
+    @Test
+    public void user_sees_friends_post() {
+        User userA = randomUser();
+        User userB = randomUser();
+
+
+
+        Post post = new Post();
+        service.post(post);
+
+    }
+
+
 }
