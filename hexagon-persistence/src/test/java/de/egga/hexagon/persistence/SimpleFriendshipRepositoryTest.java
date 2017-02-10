@@ -2,7 +2,6 @@ package de.egga.hexagon.persistence;
 
 
 import de.egga.hexagon.users.User;
-import de.egga.hexagon.users.UserNotFoundException;
 import org.junit.Test;
 
 import java.util.Set;
@@ -20,20 +19,37 @@ public class SimpleFriendshipRepositoryTest {
     @Test
     public void user_a_has_b_as_friend() {
         repository.add(userA, userB);
-        Set<User> friends = repository.getFriendsOf(userA);
-        assertThat(friends).containsExactly(userB);
+        assertThat(friendsOf(userA)).containsExactly(userB);
     }
 
     @Test
     public void user_b_has_a_as_friend() {
         repository.add(userA, userB);
-        Set<User> friends = repository.getFriendsOf(userA);
-        assertThat(friends).containsExactly(userB);
+        assertThat(friendsOf(userA)).containsExactly(userB);
     }
 
-    @Test(expected = UserNotFoundException.class)
-    public void asking_for_non_existent_user_yields_exception()  {
-        repository.getFriendsOf(randomUser());
+    @Test
+    public void non_registered_user_returns_empty_set() {
+        assertThat(friendsOf(randomUser())).isEmpty();
 
+    }
+
+    @Test
+    public void user_a_has_b_not_as_friend_anymore() {
+        repository.add(userA, userB);
+        repository.remove(userA, userB);
+        assertThat(friendsOf(userA)).doesNotContain(userB);
+    }
+
+    @Test
+    public void user_b_has_a_not_as_friend_anymore() {
+        repository.add(userA, userB);
+        repository.remove(userA, userB);
+        assertThat(friendsOf(userA)).doesNotContain(userB);
+    }
+
+
+    private Set<User> friendsOf(User user) {
+        return repository.getFriendsOf(user);
     }
 }

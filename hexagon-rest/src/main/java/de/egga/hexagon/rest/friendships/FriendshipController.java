@@ -50,6 +50,7 @@ class FriendshipController {
     ) {
         log.info("DEL FRIENDSHIP user [" + userId + "] friend [" + friendId + "]");
 
+        service.removeFriendship(new User(new UserId(userId)), new User(new UserId(friendId)));
         return new ResponseEntity<>(NO_CONTENT);
     }
 }

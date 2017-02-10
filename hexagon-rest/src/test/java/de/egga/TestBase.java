@@ -40,8 +40,8 @@ public class TestBase {
 
     protected void put(String requestBody, String url, String key1, String value1, String key2, String value2) {
         put(requestBody, url, ImmutableMap.of(key1, value1, key2, value2));
+   }
 
-    }
     protected void put(String requestBody, String url, String key, String value) {
         put(requestBody, url, ImmutableMap.of(key, value));
     }
@@ -51,6 +51,9 @@ public class TestBase {
     }
     protected void delete(String url, String id) {
         restTemplate.delete(url, id);
+    }
+    protected void delete(String url, String key1, String value1, String key2, String value2) {
+        restTemplate.delete(url, ImmutableMap.of(key1, value1, key2, value2));
     }
 
     protected String fixture(String fileName) {

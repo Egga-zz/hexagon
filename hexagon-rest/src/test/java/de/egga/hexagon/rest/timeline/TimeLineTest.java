@@ -20,7 +20,6 @@ public class TimeLineTest extends TestBase {
     @Before
     public void setUp() {
         delete("/users/{userId}/posts", userA);
-
     }
 
 
@@ -45,6 +44,18 @@ public class TimeLineTest extends TestBase {
         assertThatJson(actual).isEqualTo(emptyTimeLine);
     }
 
+    @Test
+    public void user_can_not_see_post_on_ex_friends_timeline() {
+
+        makePost(userA, post);
+        befriend(userA, userB);
+        unfriend(userA, userB);
+
+        String actual = fetchTimeLine(userB);
+
+        assertThatJson(actual).isEqualTo(emptyTimeLine);
+    }
+
 
     private String fetchTimeLine(String user) {
         return get("/users/{userId}/timeline", user);
@@ -59,6 +70,12 @@ public class TimeLineTest extends TestBase {
 
     private void befriend(String userA, String userB) {
         put("", "/users/{userId}/friends/{friendId}",
+            "userId", userA,
+            "friendId", userB
+        );
+    }
+    private void unfriend(String userA, String userB) {
+        delete("/users/{userId}/friends/{friendId}",
             "userId", userA,
             "friendId", userB
         );

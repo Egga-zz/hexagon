@@ -1,7 +1,6 @@
 package de.egga.hexagon.persistence;
 
 import de.egga.hexagon.friendships.FriendshipRepository;
-import de.egga.hexagon.posts.UserId;
 import de.egga.hexagon.users.User;
 
 import java.util.HashMap;
@@ -13,17 +12,25 @@ import static java.util.Collections.emptySet;
 
 public class SimpleFriendshipRepository implements FriendshipRepository {
 
-    private final Map<UserId, Set<User>> friends = new HashMap<>();
+    private final Map<User, Set<User>> friendsOf = new HashMap<>();
 
     @Override
     public Set<User> getFriendsOf(User user) {
-        Set<User> usersFriends = friends.get(user.getId());
+        Set<User> usersFriends = friendsOf.get(user);
 
         if (usersFriends == null) {
             return emptySet();
         }
 
         return usersFriends;
+    }
+
+    @Override
+    public void remove(User user, User exfriend) {
+        if (isRegistered(user)) {
+            Set<User> friends = friendsOf.get(user);
+            friends.remove(exfriend);
+        }
     }
 
     @Override
@@ -35,12 +42,16 @@ public class SimpleFriendshipRepository implements FriendshipRepository {
 
     private void addFriendship(User userA, User userB) {
         ensureFriendsListFor(userA);
-        this.friends.get(userA.getId()).add(userB);
+        friendsOf.get(userA).add(userB);
     }
 
-    private void ensureFriendsListFor(User userA) {
-        if (!friends.containsKey(userA)) {
-            friends.put(userA.getId(), new HashSet<>());
+    private boolean isRegistered(User user) {
+        return friendsOf.containsKey(user);
+    }
+
+    private void ensureFriendsListFor(User user) {
+        if (!isRegistered(user)) {
+            friendsOf.put(user, new HashSet<>());
         }
     }
 }
