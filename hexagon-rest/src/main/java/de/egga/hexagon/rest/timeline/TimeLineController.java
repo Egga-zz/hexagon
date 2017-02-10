@@ -5,6 +5,7 @@ import de.egga.hexagon.rest.posts.PostView;
 import de.egga.hexagon.timeline.TimeLine;
 import de.egga.hexagon.timeline.TimeLineService;
 import de.egga.hexagon.users.User;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+@Log
 @RestController
 class TimeLineController {
 
@@ -31,9 +33,7 @@ class TimeLineController {
 
     @RequestMapping(method = GET, value = URL)
     ResponseEntity<TimeLineView> get(@PathVariable String userId) {
-        System.err.println("= TIMELINE ===================================================");
-        System.err.println("user [" + userId + "]");
-        System.err.println("==============================================================");
+        log.info("GET TIMELINE user [" + userId + "]");
 
 
         TimeLine timeLine = service.getTimeLine(new User(new UserId(userId)));

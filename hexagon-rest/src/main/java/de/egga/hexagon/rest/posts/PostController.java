@@ -5,6 +5,7 @@ import de.egga.hexagon.posts.PostId;
 import de.egga.hexagon.posts.PostService;
 import de.egga.hexagon.posts.UserId;
 import de.egga.hexagon.users.User;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
+@Log
 @RestController
 class PostController {
 
@@ -36,10 +38,7 @@ class PostController {
         @PathVariable String postId,
         @RequestBody PostView view
     ) {
-
-        System.err.println("= POST   =====================================================");
-        System.err.println("user [" + userId + "] post [" + postId + "] msg [" + view.getMessage() + "]");
-        System.err.println("==============================================================");
+        log.info("PUT POST user [" + userId + "] post [" + postId + "] msg [" + view.getMessage() + "]");
 
         Post post = new Post(
             new PostId(postId),
@@ -53,9 +52,7 @@ class PostController {
 
     @RequestMapping(method = DELETE, value = COLLECTION_URL)
     ResponseEntity delete(@PathVariable String userId) {
-        System.err.println("= DELETE  ====================================================");
-        System.err.println("user [" + userId + "]");
-        System.err.println("==============================================================");
+        log.info("DEL POST user [" + userId + "]");
         //service.deleteAll();
         return new ResponseEntity<>(NO_CONTENT);
     }

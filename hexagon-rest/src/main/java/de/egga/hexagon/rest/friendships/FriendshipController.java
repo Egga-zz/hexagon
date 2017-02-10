@@ -3,6 +3,7 @@ package de.egga.hexagon.rest.friendships;
 import de.egga.hexagon.friendships.FriendshipService;
 import de.egga.hexagon.posts.UserId;
 import de.egga.hexagon.users.User;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
+@Log
 @RestController
 class FriendshipController {
 
@@ -31,9 +33,7 @@ class FriendshipController {
         @PathVariable String userId,
         @PathVariable String friendId
     ) {
-        System.err.println("= INSERT =====================================================");
-        System.err.println("user [" + userId + "] friend [" + friendId + "]");
-        System.err.println("==============================================================");
+        log.info("PUT FRIENDSHIP user [" + userId + "] friend [" + friendId + "]");
 
         service.addFriendship(
             new User(new UserId(userId)),
@@ -48,9 +48,7 @@ class FriendshipController {
         @PathVariable String userId,
         @PathVariable String friendId
     ) {
-        System.err.println("= REMOVE =====================================================");
-        System.err.println("user [" + userId + "] friend [" + friendId + "]");
-        System.err.println("==============================================================");
+        log.info("DEL FRIENDSHIP user [" + userId + "] friend [" + friendId + "]");
 
         return new ResponseEntity<>(NO_CONTENT);
     }
