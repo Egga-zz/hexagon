@@ -19,7 +19,7 @@
 
     <modules>
         <module>hexagon-persistence</module>
-        <module>hexagon-posts</module>
+        <module>hexagon-core</module>
         <module>hexagon-rest</module>
     </modules>
 

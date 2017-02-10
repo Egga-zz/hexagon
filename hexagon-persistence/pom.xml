@@ -20,13 +20,13 @@
 
         <dependency>
             <groupId>de.egga</groupId>
-            <artifactId>hexagon-posts</artifactId>
+            <artifactId>hexagon-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>de.egga</groupId>
-            <artifactId>hexagon-posts</artifactId>
+            <artifactId>hexagon-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <type>test-jar</type>
             <scope>test</scope>
