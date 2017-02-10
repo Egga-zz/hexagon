@@ -33,6 +33,7 @@ class FriendshipController {
         @PathVariable String userId,
         @PathVariable String friendId
     ) {
+
         log.info("PUT FRIENDSHIP user [" + userId + "] friend [" + friendId + "]");
 
         service.addFriendship(
@@ -48,9 +49,14 @@ class FriendshipController {
         @PathVariable String userId,
         @PathVariable String friendId
     ) {
+
         log.info("DEL FRIENDSHIP user [" + userId + "] friend [" + friendId + "]");
 
-        service.removeFriendship(new User(new UserId(userId)), new User(new UserId(friendId)));
+        service.removeFriendship(
+            new User(new UserId(userId)),
+            new User(new UserId(friendId))
+        );
+
         return new ResponseEntity<>(NO_CONTENT);
     }
 }

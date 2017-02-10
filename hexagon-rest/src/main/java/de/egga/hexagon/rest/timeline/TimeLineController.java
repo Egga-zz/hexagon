@@ -35,7 +35,6 @@ class TimeLineController {
     ResponseEntity<TimeLineView> get(@PathVariable String userId) {
         log.info("GET TIMELINE user [" + userId + "]");
 
-
         TimeLine timeLine = service.getTimeLine(new User(new UserId(userId)));
         List<PostView> collect = timeLine.getPosts()
             .stream()

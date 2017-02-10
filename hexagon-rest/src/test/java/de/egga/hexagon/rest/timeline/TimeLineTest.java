@@ -47,8 +47,8 @@ public class TimeLineTest extends TestBase {
     @Test
     public void user_can_not_see_post_on_ex_friends_timeline() {
 
-        makePost(userA, post);
         befriend(userA, userB);
+        makePost(userA, post);
         unfriend(userA, userB);
 
         String actual = fetchTimeLine(userB);
