@@ -30,6 +30,9 @@ class FriendshipController {
         @PathVariable String friendId
     ) {
 
+        System.err.println("= INSERT =====================================================");
+        System.err.println("user [" + userId + "] friend [" + friendId + "]");
+        System.err.println("==============================================================");
         return new ResponseEntity<>(NO_CONTENT);
     }
 
@@ -38,6 +41,9 @@ class FriendshipController {
         @PathVariable String userId,
         @PathVariable String friendId
     ) {
+        System.err.println("= REMOVE =====================================================");
+        System.err.println("user [" + userId + "] friend [" + friendId + "]");
+        System.err.println("==============================================================");
 
         return new ResponseEntity<>(NO_CONTENT);
     }

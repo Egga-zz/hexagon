@@ -16,7 +16,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 class PostController {
 
     private static final String COLLECTION_URL = "/users/{userId}/posts";
-    private static final String ITEM_URL = COLLECTION_URL + "/{id}";
+    private static final String ITEM_URL = COLLECTION_URL + "/{postId}";
 
     final PostService service;
 
@@ -32,12 +32,20 @@ class PostController {
         @PathVariable String postId,
         @RequestBody PostView post
     ) {
+
+        System.err.println("= POST   =====================================================");
+        System.err.println("user [" + userId + "] post [" + postId + "] msg ["+ post.getMessage()+ "]");
+        System.err.println("==============================================================");
+
         //service.save(post, userId, postId);
         return new ResponseEntity<>(NO_CONTENT);
     }
 
     @RequestMapping(method = DELETE, value = COLLECTION_URL)
     ResponseEntity delete(@PathVariable String userId) {
+        System.err.println("= DELETE  =====================================================");
+        System.err.println("user [" + userId + "]");
+        System.err.println("==============================================================");
         //service.deleteAll();
         return new ResponseEntity<>(NO_CONTENT);
     }
