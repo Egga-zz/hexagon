@@ -7,6 +7,7 @@ import de.egga.hexagon.posts.Post;
 import de.egga.hexagon.posts.PostRepository;
 import de.egga.hexagon.posts.PostService;
 import de.egga.hexagon.users.User;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -28,14 +29,19 @@ public class TimeLineServiceTest {
     @InjectMocks FriendshipService friendshipService;
     @InjectMocks PostService postService;
 
-    @InjectMocks TimeLineService service;
+    TimeLineService service;
 
+    @Before
+    public void setUp() throws Exception {
+        service = new TimeLineService(friendshipService, postService);
+
+    }
 
     @Test
     public void user_sees_friends_post() {
         User userA = randomUser();
         User userB = randomUser();
-        when(friendshipRepository.getFriendsOf(userA)).thenReturn(newHashSet(userB));
+        when(friendshipRepository.getFriendsOf(userB)).thenReturn(newHashSet(userA));
 
         Post post = new Post(userA);
         when(postRepository.getUsersPosts(userA.getId())).thenReturn(asList(post));
@@ -43,6 +49,5 @@ public class TimeLineServiceTest {
         TimeLine timeLine = service.getTimeLine(userB);
 
         assertThat(timeLine.getPosts()).containsExactly(post);
-
     }
 }
