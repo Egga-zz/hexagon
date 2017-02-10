@@ -8,7 +8,7 @@ public class FriendshipService {
 
     private final FriendshipRepository repository;
 
-    FriendshipService(FriendshipRepository repository) {
+    public FriendshipService(FriendshipRepository repository) {
         this.repository = repository;
     }
 
