@@ -1,7 +1,7 @@
 package de.egga.hexagon.rest.helpers;
 
-import de.egga.hexagon.posts.UserId;
 import de.egga.hexagon.users.User;
+import de.egga.hexagon.users.UserId;
 import org.springframework.web.bind.annotation.PathVariable;
 
 public class UserHelper {

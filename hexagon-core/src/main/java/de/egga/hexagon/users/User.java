@@ -1,7 +1,6 @@
 package de.egga.hexagon.users;
 
 import com.google.common.base.Objects;
-import de.egga.hexagon.posts.UserId;
 
 public class User {
 

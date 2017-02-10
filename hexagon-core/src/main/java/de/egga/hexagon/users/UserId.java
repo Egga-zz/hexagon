@@ -1,4 +1,4 @@
-package de.egga.hexagon.posts;
+package de.egga.hexagon.users;
 
 import com.google.common.base.Objects;
 

@@ -2,7 +2,7 @@ package de.egga.hexagon.persistence;
 
 import de.egga.hexagon.posts.Post;
 import de.egga.hexagon.posts.PostRepository;
-import de.egga.hexagon.posts.UserId;
+import de.egga.hexagon.users.UserId;
 
 import java.util.ArrayList;
 import java.util.List;

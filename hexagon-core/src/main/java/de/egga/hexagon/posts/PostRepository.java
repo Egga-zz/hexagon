@@ -1,5 +1,7 @@
 package de.egga.hexagon.posts;
 
+import de.egga.hexagon.users.UserId;
+
 import java.util.List;
 
 public interface PostRepository {
