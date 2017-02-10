@@ -19,4 +19,8 @@ public class FriendshipService {
     public Set<User> getFriends(User user) {
         return repository.getFriendsOf(user);
     }
+
+    public void removeFriendship(User user, User exfriend) {
+        repository.remove(user, exfriend);
+    }
 }
