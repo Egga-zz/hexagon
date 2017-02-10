@@ -10,10 +10,6 @@ public class PostId {
         this.id = id;
     }
 
-    public String getId() {
-        return id;
-    }
-
 
     @Override
     public boolean equals(Object o) {

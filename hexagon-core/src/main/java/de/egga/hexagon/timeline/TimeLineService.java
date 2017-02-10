@@ -7,7 +7,6 @@ import de.egga.hexagon.posts.PostService;
 import de.egga.hexagon.users.User;
 
 import java.util.List;
-import java.util.Set;
 
 public class TimeLineService {
 
@@ -23,8 +22,7 @@ public class TimeLineService {
 
         TimeLine timeLine = new TimeLine();
 
-        Set<User> friends = friendshipService.getFriends(user);
-        for (User friend : friends) {
+        for (User friend : friendshipService.getFriends(user)) {
             List<Post> friendsPosts = postService.getAllPosts(friend.getId());
             timeLine.addPosts(friendsPosts);
         }

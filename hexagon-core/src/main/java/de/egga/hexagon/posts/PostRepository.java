@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface PostRepository {
 
-
     void deleteAllPosts();
 
     List<Post> getUsersPosts(UserId id);
