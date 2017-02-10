@@ -3,12 +3,10 @@ package de.egga.hexagon.persistence;
 import de.egga.hexagon.posts.Post;
 import de.egga.hexagon.posts.PostRepository;
 import de.egga.hexagon.posts.UserId;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
 public class SimplePostRepository implements PostRepository {
 
     private final List<Post> posts = new ArrayList<>();
