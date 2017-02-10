@@ -1,6 +1,6 @@
 package de.egga.hexagon.rest.timeline;
 
-import de.egga.hexagon.rest.post.PostView;
+import de.egga.hexagon.rest.posts.PostView;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

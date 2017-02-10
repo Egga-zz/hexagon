@@ -1,6 +1,6 @@
 package de.egga.hexagon.rest.timeline;
 
-import de.egga.hexagon.rest.post.PostView;
+import de.egga.hexagon.rest.posts.PostView;
 import lombok.Data;
 
 import java.util.ArrayList;

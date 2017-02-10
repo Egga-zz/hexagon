@@ -1,4 +1,4 @@
-package de.egga.hexagon.rest.post;
+package de.egga.hexagon.rest.posts;
 
 
 public class PostView {

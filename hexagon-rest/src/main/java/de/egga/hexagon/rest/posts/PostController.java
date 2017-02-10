@@ -1,4 +1,4 @@
-package de.egga.hexagon.rest.post;
+package de.egga.hexagon.rest.posts;
 
 import de.egga.hexagon.posts.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
