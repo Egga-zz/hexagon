@@ -1,6 +1,8 @@
 package de.egga.hexagon.rest.friendships;
 
 import de.egga.hexagon.friendships.FriendshipService;
+import de.egga.hexagon.posts.UserId;
+import de.egga.hexagon.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +16,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 @RestController
 class FriendshipController {
 
-    private static final String URL = "/users/{userId}/friends/{friendId}";
+    static final String URL = "/users/{userId}/friends/{friendId}";
 
     final FriendshipService service;
 
@@ -29,10 +31,15 @@ class FriendshipController {
         @PathVariable String userId,
         @PathVariable String friendId
     ) {
-
         System.err.println("= INSERT =====================================================");
         System.err.println("user [" + userId + "] friend [" + friendId + "]");
         System.err.println("==============================================================");
+
+        service.addFriendship(
+            new User(new UserId(userId)),
+            new User(new UserId(friendId))
+        );
+
         return new ResponseEntity<>(NO_CONTENT);
     }
 

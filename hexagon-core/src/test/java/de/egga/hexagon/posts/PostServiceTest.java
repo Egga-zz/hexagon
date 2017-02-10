@@ -10,6 +10,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
+import static de.egga.hexagon.posts.PostFactory.randomPost;
 import static de.egga.hexagon.users.UserFactory.randomUser;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,7 +38,7 @@ public class PostServiceTest {
 
     @Test
     public void get_all_returns_users_posts() {
-        Post post = new Post(randomUser);
+        Post post = randomPost();
         when(repository.getUsersPosts(randomUser.getId())).thenReturn(asList(post));
         List<Post> allPosts = service.getAllPosts(randomUser.getId());
         assertThat(allPosts).containsExactly(post);
@@ -45,7 +46,7 @@ public class PostServiceTest {
 
     @Test
     public void post_gets_persisted() {
-        Post post = new Post(randomUser);
+        Post post = randomPost();
         service.post(post);
         verify(repository).add(post);
     }

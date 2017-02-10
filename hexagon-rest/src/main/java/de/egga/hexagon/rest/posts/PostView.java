@@ -3,21 +3,17 @@ package de.egga.hexagon.rest.posts;
 
 public class PostView {
 
-    private final String id;
+    private String message;
 
-    private final String value;
+    public PostView() {
 
-
-    public PostView(String id, String value) {
-        this.id = id;
-        this.value = value;
     }
 
-    public String getId() {
-        return id;
+    public PostView(String message) {
+        this.message = message;
     }
 
-    public String getValue() {
-        return value;
+    public String getMessage() {
+        return message;
     }
 }

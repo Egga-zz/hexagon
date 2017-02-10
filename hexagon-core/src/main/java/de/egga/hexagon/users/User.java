@@ -6,7 +6,7 @@ public class User {
 
     private final UserId id;
 
-    User(UserId id) {
+    public User(UserId id) {
         this.id = id;
     }
 

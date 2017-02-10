@@ -4,6 +4,7 @@ package de.egga.hexagon.timeline;
 import de.egga.hexagon.friendships.FriendshipRepository;
 import de.egga.hexagon.friendships.FriendshipService;
 import de.egga.hexagon.posts.Post;
+import de.egga.hexagon.posts.PostFactory;
 import de.egga.hexagon.posts.PostRepository;
 import de.egga.hexagon.posts.PostService;
 import de.egga.hexagon.users.User;
@@ -43,7 +44,7 @@ public class TimeLineServiceTest {
         User userB = randomUser();
         when(friendshipRepository.getFriendsOf(userB)).thenReturn(newHashSet(userA));
 
-        Post post = new Post(userA);
+        Post post = PostFactory.randomPostOf(userA);
         when(postRepository.getUsersPosts(userA.getId())).thenReturn(asList(post));
 
         TimeLine timeLine = service.getTimeLine(userB);

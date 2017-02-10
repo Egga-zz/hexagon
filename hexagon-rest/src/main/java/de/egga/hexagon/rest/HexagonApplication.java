@@ -5,6 +5,7 @@ import de.egga.hexagon.friendships.FriendshipService;
 import de.egga.hexagon.persistence.SimpleFriendshipRepository;
 import de.egga.hexagon.persistence.SimplePostRepository;
 import de.egga.hexagon.posts.PostService;
+import de.egga.hexagon.timeline.TimeLineService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
@@ -34,6 +35,15 @@ public class HexagonApplication {
     public FriendshipService friendshipService() {
         return new FriendshipService(
             new SimpleFriendshipRepository()
+        );
+    }
+
+    @Bean
+    public TimeLineService timeLineService(
+        FriendshipService friendshipService, PostService postService
+    ) {
+        return new TimeLineService(
+            friendshipService, postService
         );
     }
 }

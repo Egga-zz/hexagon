@@ -2,6 +2,7 @@ package de.egga.hexagon.persistence;
 
 
 import de.egga.hexagon.users.User;
+import de.egga.hexagon.users.UserNotFoundException;
 import org.junit.Test;
 
 import java.util.Set;
@@ -28,5 +29,11 @@ public class SimpleFriendshipRepositoryTest {
         repository.add(userA, userB);
         Set<User> friends = repository.getFriendsOf(userA);
         assertThat(friends).containsExactly(userB);
+    }
+
+    @Test(expected = UserNotFoundException.class)
+    public void asking_for_non_existent_user_yields_exception()  {
+        repository.getFriendsOf(randomUser());
+
     }
 }

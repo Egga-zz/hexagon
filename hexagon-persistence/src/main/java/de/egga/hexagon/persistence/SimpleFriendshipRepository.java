@@ -3,6 +3,7 @@ package de.egga.hexagon.persistence;
 import de.egga.hexagon.friendships.FriendshipRepository;
 import de.egga.hexagon.posts.UserId;
 import de.egga.hexagon.users.User;
+import de.egga.hexagon.users.UserNotFoundException;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,7 +16,13 @@ public class SimpleFriendshipRepository implements FriendshipRepository {
 
     @Override
     public Set<User> getFriendsOf(User user) {
-        return friends.get(user.getId());
+        Set<User> usersFriends = friends.get(user.getId());
+
+        if (usersFriends == null) {
+            throw new UserNotFoundException(user.getId().getValue());
+        }
+
+        return usersFriends;
     }
 
     @Override

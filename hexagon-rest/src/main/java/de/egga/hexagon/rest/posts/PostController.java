@@ -1,6 +1,10 @@
 package de.egga.hexagon.rest.posts;
 
+import de.egga.hexagon.posts.Post;
+import de.egga.hexagon.posts.PostId;
 import de.egga.hexagon.posts.PostService;
+import de.egga.hexagon.posts.UserId;
+import de.egga.hexagon.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,8 +19,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 @RestController
 class PostController {
 
-    private static final String COLLECTION_URL = "/users/{userId}/posts";
-    private static final String ITEM_URL = COLLECTION_URL + "/{postId}";
+    static final String COLLECTION_URL = "/users/{userId}/posts";
+    static final String ITEM_URL = COLLECTION_URL + "/{postId}";
 
     final PostService service;
 
@@ -30,20 +34,26 @@ class PostController {
     ResponseEntity put(
         @PathVariable String userId,
         @PathVariable String postId,
-        @RequestBody PostView post
+        @RequestBody PostView view
     ) {
 
         System.err.println("= POST   =====================================================");
-        System.err.println("user [" + userId + "] post [" + postId + "] msg ["+ post.getMessage()+ "]");
+        System.err.println("user [" + userId + "] post [" + postId + "] msg [" + view.getMessage() + "]");
         System.err.println("==============================================================");
 
-        //service.save(post, userId, postId);
+        Post post = new Post(
+            new PostId(postId),
+            new User(new UserId(userId)),
+            view.getMessage()
+        );
+        service.post(post);
+
         return new ResponseEntity<>(NO_CONTENT);
     }
 
     @RequestMapping(method = DELETE, value = COLLECTION_URL)
     ResponseEntity delete(@PathVariable String userId) {
-        System.err.println("= DELETE  =====================================================");
+        System.err.println("= DELETE  ====================================================");
         System.err.println("user [" + userId + "]");
         System.err.println("==============================================================");
         //service.deleteAll();

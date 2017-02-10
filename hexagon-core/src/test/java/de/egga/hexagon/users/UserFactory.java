@@ -7,10 +7,10 @@ import static java.util.UUID.randomUUID;
 public class UserFactory {
 
     public static User randomUser() {
-        return new User(randomId());
+        return new User(randomUserId());
     }
 
-    public static UserId randomId() {
+    public static UserId randomUserId() {
         return new UserId(randomUUID().toString());
     }
 

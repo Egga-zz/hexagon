@@ -1,8 +1,7 @@
 {
   "posts": [
     {
-      "id": "any-post",
-      "value": "any-message"
+      "message": "Hola!"
     }
   ]
 }
