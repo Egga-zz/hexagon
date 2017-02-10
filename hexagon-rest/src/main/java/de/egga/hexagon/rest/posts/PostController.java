@@ -53,7 +53,6 @@ class PostController {
     @RequestMapping(method = DELETE, value = COLLECTION_URL)
     ResponseEntity delete(@PathVariable String userId) {
         log.info("DEL POST user [" + userId + "]");
-        //service.deleteAll();
         return new ResponseEntity<>(NO_CONTENT);
     }
 

@@ -3,12 +3,13 @@ package de.egga.hexagon.persistence;
 import de.egga.hexagon.friendships.FriendshipRepository;
 import de.egga.hexagon.posts.UserId;
 import de.egga.hexagon.users.User;
-import de.egga.hexagon.users.UserNotFoundException;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import static java.util.Collections.emptySet;
 
 public class SimpleFriendshipRepository implements FriendshipRepository {
 
@@ -19,7 +20,7 @@ public class SimpleFriendshipRepository implements FriendshipRepository {
         Set<User> usersFriends = friends.get(user.getId());
 
         if (usersFriends == null) {
-            throw new UserNotFoundException(user.getId().getValue());
+            return emptySet();
         }
 
         return usersFriends;

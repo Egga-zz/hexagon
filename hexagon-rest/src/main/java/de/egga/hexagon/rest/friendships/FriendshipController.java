@@ -52,5 +52,4 @@ class FriendshipController {
 
         return new ResponseEntity<>(NO_CONTENT);
     }
-
 }

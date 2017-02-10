@@ -8,11 +8,14 @@ import static net.javacrumbs.jsonunit.fluent.JsonFluentAssert.assertThatJson;
 
 public class TimeLineTest extends TestBase {
 
-    String userB = "any-friend";
     String userA = "any-user";
+    String userB = "any-friend";
 
-    String timeline = fixture("timeline");
     String post = fixture("post");
+
+    String emptyTimeLine = "{\"posts\":[]}";
+    String timeline = fixture("timeline");
+
 
     @Before
     public void setUp() {
@@ -20,22 +23,44 @@ public class TimeLineTest extends TestBase {
 
     }
 
+
     @Test
-    public void a_user_can_see_own_post_on_timeline() {
+    public void user_can_see_friends_post_on_timeline() {
 
-        put(post, "/users/{userId}/posts/{postId}",
-            "userId", userA,
-            "postId", "any-post"
-        );
-        put("", "/users/{userId}/friends/{friendId}",
-            "userId", userA,
-            "friendId", userB
-        );
+        makePost(userA, post);
+        befriend(userA, userB);
 
-        String actual = get("/users/{userId}/timeline", userB);
+        String actual = fetchTimeLine(userB);
 
         assertThatJson(actual).isEqualTo(timeline);
     }
 
+    @Test
+    public void user_can_not_see_own_post_on_timeline() {
 
+        makePost(userA, post);
+
+        String actual = fetchTimeLine(userA);
+
+        assertThatJson(actual).isEqualTo(emptyTimeLine);
+    }
+
+
+    private String fetchTimeLine(String user) {
+        return get("/users/{userId}/timeline", user);
+    }
+
+    private void makePost(String user, String post) {
+        put(post, "/users/{userId}/posts/{postId}",
+            "userId", user,
+            "postId", "any-post"
+        );
+    }
+
+    private void befriend(String userA, String userB) {
+        put("", "/users/{userId}/friends/{friendId}",
+            "userId", userA,
+            "friendId", userB
+        );
+    }
 }
